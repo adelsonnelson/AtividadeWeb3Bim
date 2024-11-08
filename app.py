@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'QualquerCoisa'
 conexao = 'mysql+pymysql://alunos:cefetmg@127.0.0.1/bancodedados'
@@ -18,3 +18,7 @@ app.register_blueprint(bp_pizzas, url_prefix='/pizzas')
 
 from modulos.pedidos.pedidos import bp_pedidos
 app.register_blueprint(bp_pedidos, url_prefix='/pedidos')
+
+@app.route('/')
+def index():
+    return render_template('ola.html')
